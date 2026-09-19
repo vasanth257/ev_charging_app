@@ -9,7 +9,7 @@ import { INITIAL_CHARGERS, INITIAL_VEHICLES, INITIAL_SAVED_TRIPS, INITIAL_PAYMEN
 class AppStore {
   constructor() {
     // Presentation Controls
-    this.viewMode = 'landing'; // 'landing', 'app', 'casestudy'
+    this.viewMode = 'app'; // 'landing', 'app', 'casestudy'
     this.deviceFrame = '390'; // '390', '375', '414', 'full'
 
     // User Onboarding State
