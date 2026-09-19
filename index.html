@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMPASS — EV Charging App | Voltline Mobility</title>
+  <meta name="description" content="COMPASS by Voltline Mobility — Next-generation EV charging mobile application prototype. Find, charge, pay, and plan trips seamlessly.">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- TOP PRESENTATION HEADER BAR -->
+  <header id="presentation-bar" class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 text-sm">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-extrabold text-slate-950 shadow-lg shadow-emerald-500/20">
+        🧭
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-white tracking-wide text-base">COMPASS</span>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Voltline Mobility</span>
+        </div>
+        <p class="text-xs text-slate-400">EV Charging, Simplified • UI/UX & Functional Prototype</p>
+      </div>
+    </div>
+
+    <!-- VIEW SWITCHER & TOOLBAR -->
+    <div class="flex items-center gap-2">
+      <!-- Mode Toggle -->
+      <div class="bg-slate-800/80 p-1 rounded-xl flex items-center border border-slate-700">
+        <button id="btn-view-landing" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 text-slate-950 shadow-sm transition-all flex items-center gap-1.5">
+          <span>🌐</span> Website
+        </button>
+        <button id="btn-view-app" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5">
+          <span>📱</span> Interactive App
+        </button>
+        <button id="btn-view-casestudy" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white transition-all flex items-center gap-1.5">
+          <span>📑</span> Case Study
+        </button>
+      </div>
+
+      <!-- Device Viewport Toggle (Visible in App View) -->
+      <div id="device-controls" class="hidden sm:flex items-center gap-1 bg-slate-800/80 p-1 rounded-xl border border-slate-700 text-xs text-slate-300">
+        <span class="px-2 text-slate-400 font-mono text-[10px]">Frame:</span>
+        <button id="btn-frame-390" class="px-2 py-1 rounded-md bg-slate-700 text-white font-mono">390×844</button>
+        <button id="btn-frame-375" class="px-2 py-1 rounded-md hover:bg-slate-700/60 font-mono">375×812</button>
+        <button id="btn-frame-414" class="px-2 py-1 rounded-md hover:bg-slate-700/60 font-mono">414×896</button>
+        <button id="btn-frame-full" class="px-2 py-1 rounded-md hover:bg-slate-700/60 font-mono">Responsive</button>
+      </div>
+
+      <!-- Quick Simulator Trigger Menu -->
+      <button id="btn-toggle-simulator" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-amber-400 font-medium flex items-center gap-1.5 transition-colors">
+        <span>⚡</span> Simulator
+      </button>
+    </div>
+  </header>
+
+  <!-- UNHAPPY PATH SIMULATOR DRAWER (COLLAPSIBLE OVERLAY) -->
+  <div id="simulator-drawer" class="hidden bg-slate-900 border-b border-amber-500/30 px-4 py-3 text-xs text-slate-300 z-40 transition-all shadow-xl">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        <span class="font-bold text-amber-300">UX Edge Case & Scenario Simulator:</span>
+        <span class="text-slate-400">Trigger edge cases to evaluate error recovery heuristics</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="sim-charger-busy" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-amber-950/60 border border-amber-500/30 text-amber-300 hover:text-amber-200">
+          ⚠️ Charger Busy / Waitlist
+        </button>
+        <button id="sim-payment-fail" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-red-950/60 border border-red-500/30 text-red-300 hover:text-red-200">
+          💳 Payment Declined
+        </button>
+        <button id="sim-network-loss" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 hover:text-indigo-200">
+          📡 Connection Interrupted
+        </button>
+        <button id="sim-charger-offline" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300">
+          🔌 Station Offline
+        </button>
+        <button id="sim-reset" class="px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 text-white font-medium">
+          🔄 Reset State
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE CONTENT CONTAINER -->
+  <main id="app-workspace" class="w-full flex justify-center py-6 px-2 sm:px-4 min-h-[calc(100vh-60px)]">
+    
+    <!-- VIEW 0: MARKETING LANDING WEBSITE -->
+    <div id="view-landing-container" class="w-full">
+      <div id="landing-content">
+        <!-- Injected via js/landing.js -->
+      </div>
+    </div>
+
+    <!-- VIEW 1: INTERACTIVE MOBILE APPLICATION FRAME -->
+    <div id="view-app-container" class="hidden flex flex-col items-center w-full">
+      
+      <!-- MOBILE PHONE SHELL MOCKUP -->
+      <div id="phone-frame" class="mobile-frame-390 relative bg-slate-900 border-[10px] border-slate-800 rounded-[48px] shadow-2xl shadow-emerald-950/40 overflow-hidden flex flex-col transition-all duration-300">
+        
+        <!-- PHONE NOTCH & TOP STATUS BAR -->
+        <div class="h-10 bg-slate-950 text-white flex items-center justify-between px-6 select-none shrink-0 z-30 border-b border-slate-800/40 text-xs font-semibold">
+          <span id="statusBar-time" class="tracking-tight text-[13px]">9:41</span>
+          <!-- Dynamic Island / Speaker Pill -->
+          <div class="w-24 h-4 bg-slate-900 rounded-full flex items-center justify-center gap-1.5 border border-slate-800/80">
+            <span class="w-2 h-2 rounded-full bg-slate-800"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse"></span>
+          </div>
+          <div class="flex items-center gap-1.5 text-[11px] text-slate-300">
+            <span>5G</span>
+            <span>📶</span>
+            <span id="statusBar-battery" class="font-mono text-[11px] text-emerald-400">34% ⚡</span>
+          </div>
+        </div>
+
+        <!-- DYNAMIC SCREEN RENDER AREA -->
+        <div id="screen-container" class="flex-1 bg-slate-50 text-slate-900 relative overflow-y-auto overflow-x-hidden flex flex-col">
+          <!-- Screen content injected dynamically via JS -->
+        </div>
+
+        <!-- BOTTOM HOME INDICATOR BAR (IOS STYLE) -->
+        <div class="h-5 bg-slate-950 flex items-center justify-center shrink-0 z-30">
+          <div class="w-32 h-1 bg-slate-600 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: CASE STUDY & DESIGN SYSTEM SHOWCASE -->
+    <div id="view-casestudy-container" class="hidden w-full max-w-6xl mx-auto py-4 px-2">
+      <div id="casestudy-content">
+        <!-- Injected via js/caseStudy.js -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- APPLICATION JAVASCRIPT MODULES -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
