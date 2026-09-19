@@ -14,7 +14,7 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
 
   <!-- TOP PRESENTATION HEADER BAR -->
-  <header id="presentation-bar" class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 text-sm">
+  <header id="presentation-bar" style="display: none;" class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 sticky top-0 z-50 flex flex-wrap items-center justify-between gap-3 text-sm">
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-extrabold text-slate-950 shadow-lg shadow-emerald-500/20">
         🧭
@@ -60,7 +60,7 @@
   </header>
 
   <!-- UNHAPPY PATH SIMULATOR DRAWER (COLLAPSIBLE OVERLAY) -->
-  <div id="simulator-drawer" class="hidden bg-slate-900 border-b border-amber-500/30 px-4 py-3 text-xs text-slate-300 z-40 transition-all shadow-xl">
+  <div id="simulator-drawer" style="display: none;" class="hidden bg-slate-900 border-b border-amber-500/30 px-4 py-3 text-xs text-slate-300 z-40 transition-all shadow-xl">
     <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
@@ -88,7 +88,7 @@
   </div>
 
   <!-- MAIN WORKSPACE CONTENT CONTAINER -->
-  <main id="app-workspace" class="w-full flex justify-center py-6 px-2 sm:px-4 min-h-[calc(100vh-60px)]">
+  <main id="app-workspace" style="padding: 0; min-height: 100vh;" class="w-full flex justify-center py-6 px-2 sm:px-4 min-h-[calc(100vh-60px)]">
     
     <!-- VIEW 0: MARKETING LANDING WEBSITE -->
     <div id="view-landing-container" class="w-full">
@@ -98,7 +98,7 @@
     </div>
 
     <!-- VIEW 1: INTERACTIVE MOBILE APPLICATION FRAME -->
-    <div id="view-app-container" class="hidden flex flex-col items-center w-full">
+    <div id="view-app-container" class="hidden flex flex-col items-center w-full min-h-screen">
       
       <!-- MOBILE PHONE SHELL MOCKUP -->
       <div id="phone-frame" class="mobile-frame-390 relative bg-slate-900 border-[10px] border-slate-800 rounded-[48px] shadow-2xl shadow-emerald-950/40 overflow-hidden flex flex-col transition-all duration-300">
